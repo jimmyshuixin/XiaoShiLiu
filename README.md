@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="logo" src="./doc/imgs/小石榴.png" width="100" />
+    <img alt="logo" src="./doc/imgs/光隅.png" width="100" />
 </p>
 <h1 align="center" style="margin: 20px 30px 0px 30px; font-weight: bold;">XiaoShiLiu</h1>
 
@@ -242,7 +242,7 @@ VITE_API_BASE_URL=http://localhost:3001/api
 VITE_USE_REAL_API=true
 
 # 应用标题
-VITE_APP_TITLE=小石榴图文社区
+VITE_APP_TITLE=光隅图文社区
 ```
 
 > 💡 **配置说明**：
