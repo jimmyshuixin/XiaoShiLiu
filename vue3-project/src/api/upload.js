@@ -1,7 +1,7 @@
 // 压缩图片函数
-const compressImage = (file, maxSizeMB = 0.8, quality = 0.4) => {
+const compressImage = (file, maxSizeMB = 150, quality = 0.4) => {
   return new Promise((resolve) => {
-    // 对于800KB以下的文件不进行压缩
+    // 对于150MB以下的文件不进行压缩
     if (file.size <= maxSizeMB * 1024 * 1024) {
       resolve(file)
       return
@@ -12,7 +12,7 @@ const compressImage = (file, maxSizeMB = 0.8, quality = 0.4) => {
     const img = new Image()
 
     img.onload = () => {
-      // 超过800KB的图片使用强力压缩
+      // 超过150MB的图片使用强力压缩
       const compressQuality = 0.4
       const maxDimension = 1200
 
@@ -48,7 +48,7 @@ export async function uploadImage(file, options = {}) {
   try {
     if (!file) throw new Error('请选择要上传的文件')
     if (file instanceof File && !file.type.startsWith('image/')) throw new Error('请选择图片文件')
-    if (file.size > 5 * 1024 * 1024) throw new Error('图片大小不能超过150MB')
+    if (file.size > 150 * 1024 * 1024) throw new Error('图片大小不能超过150MB')
 
     // 压缩图片
     const compressedFile = await compressImage(file)
@@ -208,7 +208,7 @@ export async function uploadCroppedImage(blob, options = {}) {
 
 export function validateImageFile(file, options = {}) {
   const {
-    maxSize = 5 * 1024 * 1024,
+    maxSize = 150 * 1024 * 1024,
     allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
   } = options
 

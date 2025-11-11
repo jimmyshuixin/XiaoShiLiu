@@ -63,7 +63,7 @@ export const videoApi = {
    * @returns {Object} 验证结果
    */
   validateVideoFile(file) {
-    const maxSize = apiConfig.upload.video?.maxFileSize || 100 * 1024 * 1024 // 10GB
+    const maxSize = apiConfig.upload.video?.maxFileSize || 10 * 1024 * 1024 * 1024 // 10GB
     const allowedTypes = apiConfig.upload.video?.allowedTypes || [
       'video/mp4', 
       'video/avi', 

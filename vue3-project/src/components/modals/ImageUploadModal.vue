@@ -175,7 +175,7 @@ const processFiles = async (files) => {
       }
 
       // 检查文件大小 (150MB)
-      if (file.size > 5 * 1024 * 1024) {
+      if (file.size > 150 * 1024 * 1024) {
         error.value = '图片大小不能超过150MB'
         continue
       }

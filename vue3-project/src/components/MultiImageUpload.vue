@@ -208,7 +208,7 @@ const addFiles = async (files) => {
   // 验证所有文件
   for (const file of fileArray) {
     // 先检查文件大小
-    if (file.size > 5 * 1024 * 1024) {
+    if (file.size > 150 * 1024 * 1024) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1)
       const errorMsg = `图片大小为 ${fileSizeMB}MB，超过 150MB 限制，请选择更小的图片`
 
@@ -452,9 +452,9 @@ const getAllImageData = async () => {
 
 
 // 压缩图片
-const compressImage = (file, maxSizeMB = 0.8, quality = 0.4) => {
+const compressImage = (file, maxSizeMB = 150, quality = 0.4) => {
   return new Promise((resolve) => {
-    // 对于800KB以下的文件不进行压缩
+    // 对于150MB以下的文件不进行压缩
     if (file.size <= maxSizeMB * 1024 * 1024) {
       resolve(file)
       return
@@ -465,7 +465,7 @@ const compressImage = (file, maxSizeMB = 0.8, quality = 0.4) => {
     const img = new Image()
 
     img.onload = () => {
-      // 超过800KB的图片使用强力压缩
+      // 超过150MB的图片使用强力压缩
       const compressQuality = 0.4
       const maxDimension = 1200
 

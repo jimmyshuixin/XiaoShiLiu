@@ -90,7 +90,7 @@ const props = defineProps({
   },
   maxSize: {
     type: Number,
-    default: 100 * 1024 * 1024 // 10GB
+    default: 10 * 1024 * 1024 * 1024 // 10GB
   }
 })
 
@@ -211,7 +211,7 @@ const validateCoverFile = (file) => {
   }
 
   // 验证文件大小 (150MB)
-  const maxCoverSize = 5 * 1024 * 1024
+  const maxCoverSize = 150 * 1024 * 1024
   if (file.size > maxCoverSize) {
     return { valid: false, message: `封面图片大小不能超过${formatFileSize(maxCoverSize)}` }
   }
