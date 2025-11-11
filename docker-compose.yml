@@ -33,6 +33,7 @@ services:
       context: ./express-project
       dockerfile: Dockerfile
     container_name: xiaoshiliu-backend
+    user: root
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -58,7 +59,7 @@ services:
     volumes:
       - backend_uploads:/app/uploads
       - /etc/localtime:/etc/localtime:ro
-    command: sh -c "chown -R node:node /app/uploads && npm start"
+    command: sh -c "chown -R nodejs:nodejs /app/uploads && su -s /bin/sh -c 'npm start' nodejs"
     networks:
       - xiaoshiliu-network
     depends_on:
