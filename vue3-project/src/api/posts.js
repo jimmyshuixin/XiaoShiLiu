@@ -15,7 +15,7 @@ function transformPostData(backendPost) {
 
   const transformedData = {
     id: backendPost.id,
-    image: (backendPost.images && backendPost.images[0]) || new URL('@/assets/imgs/未加载.png', import.meta.url).href,
+    image: (backendPost.images && backendPost.images[0]) || null,
     title: backendPost.title,
     content: backendPost.content,
     images: backendPost.images || [],
@@ -23,7 +23,7 @@ function transformPostData(backendPost) {
     video_url: backendPost.video_url,
     cover_url: backendPost.cover_url,
     videos: backendPost.videos || [],
-    avatar: backendPost.user_avatar || new URL('@/assets/imgs/avatar.png', import.meta.url).href,
+    avatar: backendPost.user_avatar || null,
     author: backendPost.nickname || '匿名用户',
     location: backendPost.location || '',
     // 统计数据 - 统一使用后端字段名
