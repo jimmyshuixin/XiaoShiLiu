@@ -47,7 +47,7 @@ const config = {
       // 本地存储配置
       local: {
         uploadDir: process.env.IMAGE_LOCAL_UPLOAD_DIR || 'uploads/images',
-        baseUrl: process.env.LOCAL_BASE_URL || 'http://localhost:3001'
+        baseUrl: process.env.LOCAL_BASE_URL || 'https://gallary.xvyin.com'
       },
       // 第三方图床配置
       imagehost: {
@@ -74,7 +74,7 @@ const config = {
       // 本地存储配置
       local: {
         uploadDir: process.env.VIDEO_LOCAL_UPLOAD_DIR || 'uploads/videos',
-        baseUrl: process.env.LOCAL_BASE_URL || 'http://localhost:3001'
+        baseUrl: process.env.LOCAL_BASE_URL || 'https://gallary.xvyin.com'
       },
       // Cloudflare R2配置
       r2: {
@@ -91,7 +91,7 @@ const config = {
 
   // API配置
   api: {
-    baseUrl: process.env.API_BASE_URL || 'http://localhost:3001',
+    baseUrl: process.env.API_BASE_URL || 'https://gallary.xvyin.com',
     timeout: 30000
   },
 

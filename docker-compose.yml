@@ -50,7 +50,7 @@ services:
       UPLOAD_MAX_SIZE: ${UPLOAD_MAX_SIZE:-150mb}
       UPLOAD_STRATEGY: ${UPLOAD_STRATEGY:-local}
       LOCAL_UPLOAD_DIR: ${LOCAL_UPLOAD_DIR:-uploads}
-      LOCAL_BASE_URL: ${LOCAL_BASE_URL:-http://localhost:3001}
+      LOCAL_BASE_URL: ${LOCAL_BASE_URL:-https://gallary.xvyin.com}
       IMAGEHOST_API_URL: ${IMAGEHOST_API_URL:-https://api.xinyew.cn/api/jdtc}
       IMAGEHOST_TIMEOUT: ${IMAGEHOST_TIMEOUT:-60000}
       TZ: Asia/Shanghai
