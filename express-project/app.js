@@ -37,7 +37,8 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://localhost:5173',
-    'http://localhost:3001'
+    'http://localhost:3001',
+    'https://gallary.xvyin.com'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
