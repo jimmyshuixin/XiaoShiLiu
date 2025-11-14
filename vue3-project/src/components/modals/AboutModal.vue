@@ -7,7 +7,7 @@
           <div class="logo-section">
             <div class="about-logo"><img :src="logoUrl" alt="虚宁" /></div>
 
-            <h2 class="about-title">关于虚静以宁</h2>
+            <h2 class="about-title">关于光隅</h2>
           </div>
           <p class="version">v2.0.0</p>
         </div>
@@ -25,14 +25,14 @@
             </blockquote>
             <p>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            你好！屏幕前的你。此情此景，我们应该是初次相遇吧？但或许，我们应该是重逢的心情。谢谢你来这里看我，无论你是好奇还是对我有些关注。在这里，我留下了一些“关于我”的信息，希望你能在这里有些收获，也期待我和你能有更多共同的语言。「<a style="color: var(--accent-color); font-weight: 500;text-shadow: 1px 1px 3px rgba(0,0,0,0.15);text-decoration: none;" href="https://www.bilibili.com/video/BV1Kj411g7Lu" target="_blank">May you,the beauty of this world,always shine.</a>」
+            你好！屏幕前的你。此情此景，我们应该是初次相遇吧？但或许，我们应该是重逢的心情。谢谢你来这里看我，无论你是好奇还是对我有些关注。在这里，我留下了一些“关于我”的信息，希望你能在这里有些收获，也期待我和你能有更多共同的语言。<a style="color: var(--accent-color); font-weight: 500;text-shadow: 1px 1px 3px rgba(0,0,0,0.15);text-decoration: none;" href="https://www.bilibili.com/video/BV1Kj411g7Lu" target="_blank">「May you,the beauty of this world,always shine.」</a>
             </p>
-            <div class="rd-philosophy">
+          </div>
+          <div class="hobby-section">
             <h3>爱好</h3>
             <p>
             健身 | Blender | 摄影 | 前端
             </p>
-            </div>
           </div>
           <div class="author-section">
             <h3>开发者</h3>
@@ -76,7 +76,7 @@ const { lock, unlock } = useScrollLock()
 
 // 静态资源URL
 const logoUrl = new URL('@/assets/imgs/光隅.png', import.meta.url).href
-const ztmyoUrl = new URL('@/assets/imgs/ztmyo.png', import.meta.url).href
+const ztmyoUrl = new URL('@/assets/imgs/虚宁.png', import.meta.url).href
 
 const isAnimating = ref(false)
 
@@ -130,6 +130,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .about-modal.scale-in {
@@ -225,43 +226,31 @@ onMounted(() => {
 }
 
 .intro-section h3,
-.author-section h3 {
+.author-section h3,
+.hobby-section h3 {
   font-size: 18px;
   font-weight: 600;
   color: var(--text-color-primary);
   margin: 0 0 12px 0;
 }
 
-.intro-section p {
+.intro-section p,
+.hobby-section p {
   font-size: 15px;
   line-height: 1.6;
   color: var(--text-color-secondary);
   margin: 0;
 }
 
-/* Specific styles for about.md content if needed */
 .intro-section blockquote {
-    border-left: 2px solid var(--accent-color);
-    padding-left: 1rem;
+    border-left: none;
+    padding-left: 0;
     margin: 1rem 0;
     font-size: 1.1rem;
     color: var(--text-color-primary);
-    font-style: italic;
+    font-weight: 600;
+    font-style: normal;
 }
-.intro-section .rd-philosophy {
-    border-top: 1px solid var(--border-color-primary);
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-}
-.intro-section .rd-philosophy h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-.intro-section .rd-philosophy p {
-    font-size: 14px;
-    color: var(--text-color-secondary);
-}
-/* End of about.md specific styles */
 
 .author-link {
   text-decoration: none;
