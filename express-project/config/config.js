@@ -40,7 +40,7 @@ const config = {
   upload: {
     // 图片上传配置
     image: {
-      maxSize: process.env.IMAGE_MAX_SIZE || '10mb',
+      maxSize: process.env.IMAGE_MAX_SIZE || '100mb',
       allowedTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
       // 图片上传策略配置
       strategy: process.env.IMAGE_UPLOAD_STRATEGY || 'local', // 'local', 'imagehost' 或 'r2'
@@ -67,7 +67,7 @@ const config = {
     },
     // 视频上传配置
     video: {
-      maxSize: process.env.VIDEO_MAX_SIZE || '10GB',
+      maxSize: process.env.VIDEO_MAX_SIZE || '100mb',
       allowedTypes: ['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/flv', 'video/webm'],
       // 视频上传策略配置（只支持本地和R2，不支持第三方图床）
       strategy: process.env.VIDEO_UPLOAD_STRATEGY || 'local', // 'local' 或 'r2'

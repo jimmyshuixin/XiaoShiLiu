@@ -1104,7 +1104,7 @@ const handleVideoFileSelect = async (event, fieldKey) => {
 
   // 验证文件类型和大小
   const validTypes = ['video/mp4', 'video/avi', 'video/mov', 'video/wmv', 'video/flv']
-  const maxSize = 10 * 1024 * 1024 * 1024 // 10GB
+  const maxSize = 100 * 1024 * 1024 // 100mb
 
   if (!validTypes.includes(file.type)) {
     videoErrors.value[fieldKey] = '请选择有效的视频格式 (MP4, AVI, MOV, WMV, FLV)'
@@ -1113,7 +1113,7 @@ const handleVideoFileSelect = async (event, fieldKey) => {
 
   if (file.size > maxSize) {
     const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1)
-    videoErrors.value[fieldKey] = `视频大小为 ${fileSizeMB}MB，超过 10GB 限制，请选择更小的视频`
+    videoErrors.value[fieldKey] = `视频大小为 ${fileSizeMB}MB，超过 100mb 限制，请选择更小的视频`
     return
   }
 
@@ -1173,7 +1173,7 @@ const handleAvatarDrop = (event, fieldKey) => {
 const showAvatarCropDialog = async (file, fieldKey) => {
   // 验证文件
   const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
-  const maxSize = 150 * 1024 * 1024
+  const maxSize = 100 * 1024 * 1024
 
   if (!validTypes.includes(file.type)) {
     avatarErrors.value[fieldKey] = '请选择有效的图片格式 (JPEG, PNG, GIF, WebP)'
@@ -1182,7 +1182,7 @@ const showAvatarCropDialog = async (file, fieldKey) => {
 
   if (file.size > maxSize) {
     const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1)
-    avatarErrors.value[fieldKey] = `图片大小为 ${fileSizeMB}MB，超过 150MB 限制，请选择更小的图片`
+    avatarErrors.value[fieldKey] = `图片大小为 ${fileSizeMB}MB，超过 100mb 限制，请选择更小的图片`
     return
   }
 

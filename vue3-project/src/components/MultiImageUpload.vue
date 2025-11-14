@@ -47,7 +47,7 @@
     <div class="upload-tips">
       <p>• 最多上传{{ maxImages }}张图片</p>
       <p>• 支持 JPG、PNG 格式</p>
-      <p>• 单张图片不超过150MB</p>
+      <p>• 单张图片不超过100mb</p>
       <p class="drag-tip">• <span class="desktop-tip">拖拽图片可调整顺序</span><span class="mobile-tip">长按图片可拖拽排序</span></p>
     </div>
 
@@ -208,9 +208,9 @@ const addFiles = async (files) => {
   // 验证所有文件
   for (const file of fileArray) {
     // 先检查文件大小
-    if (file.size > 150 * 1024 * 1024) {
+    if (file.size > 100 * 1024 * 1024) {
       const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1)
-      const errorMsg = `图片大小为 ${fileSizeMB}MB，超过 150MB 限制，请选择更小的图片`
+      const errorMsg = `图片大小为 ${fileSizeMB}MB，超过 100mb 限制，请选择更小的图片`
 
       // 显示Toast提示
       showMessage(errorMsg, 'error')
@@ -454,7 +454,7 @@ const getAllImageData = async () => {
 // 压缩图片
 const compressImage = (file, maxSizeMB = 150, quality = 0.4) => {
   return new Promise((resolve) => {
-    // 对于150MB以下的文件不进行压缩
+    // 对于100mb以下的文件不进行压缩
     if (file.size <= maxSizeMB * 1024 * 1024) {
       resolve(file)
       return
@@ -465,7 +465,7 @@ const compressImage = (file, maxSizeMB = 150, quality = 0.4) => {
     const img = new Image()
 
     img.onload = () => {
-      // 超过150MB的图片使用强力压缩
+      // 超过100mb的图片使用强力压缩
       const compressQuality = 0.4
       const maxDimension = 1200
 

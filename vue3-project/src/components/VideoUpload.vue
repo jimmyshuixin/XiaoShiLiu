@@ -47,7 +47,7 @@
         <SvgIcon name="publish" class="upload-icon" />
         <p>添加视频</p>
         <p class="upload-hint">支持 MP4、MOV、AVI 格式</p>
-        <p class="upload-hint">文件大小不超过10GB</p>
+        <p class="upload-hint">文件大小不超过100mb</p>
         <p class="drag-hint">或拖拽视频到此处</p>
       </div>
 
@@ -66,7 +66,7 @@
 
     <div class="upload-tips">
       <p>• 支持 MP4、MOV、AVI 格式</p>
-      <p>• 文件大小不超过10GB</p>
+      <p>• 文件大小不超过100mb</p>
       <p>• 建议视频时长不超过5分钟</p>
       <p v-if="videoData && !isUploading">• 点击缩略图可自定义封面</p>
     </div>
@@ -90,7 +90,7 @@ const props = defineProps({
   },
   maxSize: {
     type: Number,
-    default: 10 * 1024 * 1024 * 1024 // 10GB
+    default: 100 * 1024 * 1024 // 100mb
   }
 })
 
@@ -210,8 +210,8 @@ const validateCoverFile = (file) => {
     return { valid: false, message: '请选择图片文件' }
   }
 
-  // 验证文件大小 (150MB)
-  const maxCoverSize = 150 * 1024 * 1024
+  // 验证文件大小 (100mb)
+  const maxCoverSize = 100 * 1024 * 1024
   if (file.size > maxCoverSize) {
     return { valid: false, message: `封面图片大小不能超过${formatFileSize(maxCoverSize)}` }
   }

@@ -34,7 +34,7 @@ const upload = multer({
   storage: storage,
   fileFilter: imageFileFilter,
   limits: {
-    fileSize: 150 * 1024 * 1024 // 150MB 限制
+    fileSize: 100 * 1024 * 1024 // 100mb 限制
   }
 });
 
@@ -64,7 +64,7 @@ const videoUpload = multer({
   storage: storage,
   fileFilter: mixedFileFilter, // 使用混合文件过滤器
   limits: {
-    fileSize: 10 * 1024 * 1024 * 1024 // 10GB 限制
+    fileSize: 100 * 1024 * 1024 // 100mb 限制
   }
 });
 
@@ -256,7 +256,7 @@ router.post('/video', authenticateToken, videoUpload.fields([
 router.use((error, req, res, next) => {
   if (error instanceof multer.MulterError) {
     if (error.code === 'LIMIT_FILE_SIZE') {
-      return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: '文件大小超过限制（150MB）' });
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: '文件大小超过限制（100mb）' });
     }
     if (error.code === 'LIMIT_FILE_COUNT') {
       return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: '文件数量超过限制（9个）' });

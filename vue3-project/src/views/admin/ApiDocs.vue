@@ -340,7 +340,7 @@ const apiGroups = ref([
         method: 'POST',
         path: '/api/upload/video',
         title: '视频上传',
-        description: '上传视频文件，限制10GB，支持mp4、avi、mov格式',
+        description: '上传视频文件，限制100mb，支持mp4、avi、mov格式',
         auth: true,
         expanded: false,
         params: [
@@ -1288,7 +1288,7 @@ const apiGroups = ref([
         method: 'POST',
         path: '/api/upload/single',
         title: '单图片上传',
-        description: '上传单个图片文件，限制150MB',
+        description: '上传单个图片文件，限制100mb',
         auth: true,
         expanded: false,
         params: [
@@ -1308,7 +1308,7 @@ const apiGroups = ref([
         method: 'POST',
         path: '/api/upload/multiple',
         title: '多图片上传',
-        description: '上传多个图片文件，最多9个，每个限制150MB',
+        description: '上传多个图片文件，最多9个，每个限制100mb',
         auth: true,
         expanded: false,
         params: [

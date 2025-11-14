@@ -54,7 +54,7 @@
           <div class="upload-tips">
             <p>• 最多上传{{ maxImages }}张图片（已确认{{ confirmedImages.length }}张）</p>
             <p>• 支持 JPG、PNG 格式</p>
-            <p>• 单张图片不超过150MB</p>
+            <p>• 单张图片不超过100mb</p>
             <p>• 长按图片可拖拽排序</p>
             <p v-if="localImages.length > 0">• 当前选择{{ localImages.length }}张，点击确认上传后才会显示在预览区域</p>
           </div>
@@ -174,9 +174,9 @@ const processFiles = async (files) => {
         continue
       }
 
-      // 检查文件大小 (150MB)
-      if (file.size > 150 * 1024 * 1024) {
-        error.value = '图片大小不能超过150MB'
+      // 检查文件大小 (100mb)
+      if (file.size > 100 * 1024 * 1024) {
+        error.value = '图片大小不能超过100mb'
         continue
       }
 
