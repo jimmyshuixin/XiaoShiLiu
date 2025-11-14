@@ -1,5 +1,5 @@
 {
-  "name": "光隅 - 你的校园图文部落",
+  "name": "光隅-虚宁的校园图文部落",
   "short_name": "光隅",
   "icons": [
     {
@@ -32,5 +32,5 @@
   "display": "standalone",
   "theme_color": "#ff6b6b",
   "background_color": "#ffffff",
-  "description": "光隅图文社区 - 你的校园图文部落"
+  "description": "光隅-虚宁的校园图文部落"
 }
