@@ -5,6 +5,29 @@ const multer = require('multer');
 const { authenticateToken } = require('../middleware/auth');
 const { uploadFile, uploadVideo } = require('../utils/uploadHelper');
 
+// --- 新增代码 ---
+// 1. 添加一个辅助函数来解析 '100mb', '1g' 等字符串
+function parseSize(sizeStr) {
+  if (typeof sizeStr !== 'string' || sizeStr.length === 0) {
+    return 100 * 1024 * 1024; // 默认 100MB
+  }
+  const units = { 'b': 1, 'kb': 1024, 'mb': 1024 * 1024, 'gb': 1024 * 1024 * 1024 };
+  const match = sizeStr.toLowerCase().match(/^(\d+)([a-z]{1,2})$/);
+  
+  if (!match) {
+    return 100 * 1024 * 1024; // 默认 100MB
+  }
+
+  const value = parseInt(match[1]);
+  const unit = match[2];
+  
+  return value * (units[unit] || 1);
+}
+
+// 2. 从环境变量中读取并解析
+const maxUploadSize = parseSize(process.env.UPLOAD_MAX_SIZE || '100mb');
+// --------------
+
 // 配置 multer 内存存储（用于云端图床）
 const storage = multer.memoryStorage();
 
@@ -34,7 +57,8 @@ const upload = multer({
   storage: storage,
   fileFilter: imageFileFilter,
   limits: {
-    fileSize: 100 * 1024 * 1024 // 100mb 限制
+    // --- 修改这里 ---
+    fileSize: maxUploadSize // 使用环境变量
   }
 });
 
@@ -64,7 +88,8 @@ const videoUpload = multer({
   storage: storage,
   fileFilter: mixedFileFilter, // 使用混合文件过滤器
   limits: {
-    fileSize: 100 * 1024 * 1024 // 100mb 限制
+    // --- 修改这里 ---
+    fileSize: maxUploadSize // 使用环境变量
   }
 });
 
@@ -226,7 +251,6 @@ router.post('/video', authenticateToken, videoUpload.fields([
       }
     }
 
-
     // 记录用户上传操作日志
     console.log(`视频上传成功 - 用户ID: ${req.user.id}, 文件名: ${videoFile.originalname}, 缩略图: ${coverUrl ? '有' : '无'}`);
 
@@ -256,14 +280,16 @@ router.post('/video', authenticateToken, videoUpload.fields([
 router.use((error, req, res, next) => {
   if (error instanceof multer.MulterError) {
     if (error.code === 'LIMIT_FILE_SIZE') {
-      return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: '文件大小超过限制（100mb）' });
+      // 从环境变量中获取限制大小的字符串，用于友好提示
+      const limitString = process.env.UPLOAD_MAX_SIZE || '100mb';
+      return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: `文件大小超过限制 (${limitString})` });
     }
     if (error.code === 'LIMIT_FILE_COUNT') {
       return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: '文件数量超过限制（9个）' });
     }
   }
 
-  if (error.message === '只允许上传图片文件' || error.message === '只允许上传视频文件') {
+  if (error.message === '只允许上传图片文件' || error.message === '只允许上传视频文件' || error.message === '只支持视频文件' || error.message === '缩略图只支持图片文件' || error.message === '不支持的文件字段') {
     return res.status(HTTP_STATUS.BAD_REQUEST).json({ code: RESPONSE_CODES.VALIDATION_ERROR, message: error.message });
   }
 
