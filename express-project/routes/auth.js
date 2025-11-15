@@ -158,7 +158,7 @@ router.post('/register', async (req, res) => {
     }
     // 获取用户User-Agent
     const userAgent = req.headers['user-agent'] || '';
-    const defaultAvatar = '@/assets/imgs/avatar.png';
+    const defaultAvatar = new URL('@/assets/default_avatar.png', import.meta.url).href;
 
     // 插入新用户（密码使用SHA2哈希加密）
     const [result] = await pool.execute(
